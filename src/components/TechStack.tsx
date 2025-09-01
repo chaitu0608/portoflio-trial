@@ -1,46 +1,15 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-
-const techCategories = [
-  {
-    category: "Languages",
-    skills: ["C++", "Python", "C", "Java", "HTML", "CSS", "JavaScript", "TypeScript", "SQL", "PHP", "R"],
-    color: "bg-gradient-primary"
-  },
-  {
-    category: "Web Development",
-    skills: ["React.js", "Next.js", "Node.js", "Express.js", "Web3.js", "Tailwind CSS", "Bootstrap", "FastAPI"],
-    color: "bg-gradient-secondary"
-  },
-  {
-    category: "Cloud / Databases",
-    skills: ["MongoDB", "PostgreSQL", "Firebase", "Supabase", "Microsoft Azure"],
-    color: "bg-gradient-accent"
-  },
-  {
-    category: "Tools",
-    skills: ["Git", "GitHub", "Docker", "Arduino"],
-    color: "bg-gradient-primary"
-  },
-  {
-    category: "Data Science & AI",
-    skills: ["NumPy", "pandas", "OpenCV", "Matplotlib"],
-    color: "bg-gradient-secondary"
-  },
-  {
-    category: "Soft Skills",
-    skills: ["Adaptability", "Leadership", "Team Collaboration", "Problem Solving", "Quick Learning", "Presentation"],
-    color: "bg-gradient-accent"
-  }
-];
+import { Section, SectionHeader, Container } from "@/components/ui/section";
+import { techCategories } from "@/data/portfolio";
 
 const TechStack = () => {
   return (
-    <section id="skills" className="py-20 px-4">
-      <div className="max-w-6xl mx-auto">
-        <h2 className="text-4xl font-bold text-center mb-12">
-          Technical <span className="text-gradient">Skills</span>
-        </h2>
+    <Section id="skills">
+      <Container>
+        <SectionHeader 
+          title={<>Technical <span className="text-gradient">Skills</span></>}
+        />
         
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {techCategories.map((category, index) => (
@@ -66,8 +35,8 @@ const TechStack = () => {
             </Card>
           ))}
         </div>
-      </div>
-    </section>
+      </Container>
+    </Section>
   );
 };
 

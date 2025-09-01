@@ -1,25 +1,15 @@
 import { Card } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
-import { GraduationCap } from "lucide-react";
-
-const education = [
-  {
-    degree: "Bachelor of Technology in Computer Engineering",
-    institution: "K.J. Somaiya College of Engineering",
-    location: "Mumbai, India",
-    period: "Jul. 2023 - May 2027",
-    gpa: "Currently pursuing",
-    icon: "🎓"
-  }
-];
+import { Section, SectionHeader, Container } from "@/components/ui/section";
+import { education } from "@/data/portfolio";
 
 const Education = () => {
   return (
-    <section id="education" className="py-20 px-4">
-      <div className="max-w-4xl mx-auto">
-        <h2 className="text-4xl font-bold text-center mb-12">
-          <span className="text-gradient">Education</span>
-        </h2>
+    <Section id="education">
+      <Container size="md">
+        <SectionHeader 
+          title={<span className="text-gradient">Education</span>}
+        />
         
         <div className="space-y-6">
           {education.map((edu, index) => (
@@ -43,8 +33,8 @@ const Education = () => {
             </Card>
           ))}
         </div>
-      </div>
-    </section>
+      </Container>
+    </Section>
   );
 };
 

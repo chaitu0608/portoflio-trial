@@ -1,10 +1,12 @@
+import { Section, SectionHeader, Container } from "@/components/ui/section";
+
 const About = () => {
   return (
-    <section id="about" className="py-20 px-4">
-      <div className="max-w-4xl mx-auto">
-        <h2 className="text-4xl font-bold text-center mb-12">
-          About <span className="text-gradient">Me</span>
-        </h2>
+    <Section id="about">
+      <Container size="md">
+        <SectionHeader 
+          title={<>About <span className="text-gradient">Me</span></>}
+        />
         
         <div className="card-shadow rounded-2xl bg-card p-8 space-y-6">
           <p className="text-lg text-muted-foreground leading-relaxed">
@@ -26,8 +28,8 @@ const About = () => {
             exploring new technologies that push the boundaries of what's possible in web development.
           </p>
         </div>
-      </div>
-    </section>
+      </Container>
+    </Section>
   );
 };
 

@@ -1,15 +1,8 @@
 import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
-
-const navItems = [
-  { label: "Home", href: "#home" },
-  { label: "About", href: "#about" },
-  { label: "Experience", href: "#experience" },
-  { label: "Education", href: "#education" },
-  { label: "Projects", href: "#projects" },
-  { label: "Skills", href: "#skills" },
-];
+import { navItems, personalInfo } from "@/data/portfolio";
+import { scrollToSection } from "@/utils/animations";
 
 const Navigation = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -25,11 +18,8 @@ const Navigation = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
-  const scrollToSection = (href: string) => {
-    const element = document.querySelector(href);
-    if (element) {
-      element.scrollIntoView({ behavior: "smooth" });
-    }
+  const handleScrollToSection = (href: string) => {
+    scrollToSection(href);
     setIsOpen(false);
   };
 
@@ -39,14 +29,16 @@ const Navigation = () => {
     }`}>
       <div className="max-w-6xl mx-auto px-4">
         <div className="flex items-center justify-between h-16">
-          <div className="text-xl font-bold text-gradient">CD</div>
+          <div className="text-xl font-bold text-gradient">
+            {personalInfo.name.split(' ').map(name => name[0]).join('')}
+          </div>
           
           {/* Desktop Navigation */}
           <div className="hidden md:flex space-x-8">
             {navItems.map((item) => (
               <button
                 key={item.label}
-                onClick={() => scrollToSection(item.href)}
+                onClick={() => handleScrollToSection(item.href)}
                 className="text-muted-foreground hover:text-primary transition-colors"
               >
                 {item.label}
@@ -72,7 +64,7 @@ const Navigation = () => {
               {navItems.map((item) => (
                 <button
                   key={item.label}
-                  onClick={() => scrollToSection(item.href)}
+                  onClick={() => handleScrollToSection(item.href)}
                   className="block w-full text-left text-muted-foreground hover:text-primary transition-colors py-2"
                 >
                   {item.label}
