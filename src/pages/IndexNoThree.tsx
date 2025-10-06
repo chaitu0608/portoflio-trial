@@ -1,4 +1,4 @@
-import React, { useState, useEffect, Suspense } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import Navigation from "@/components/Navigation";
 import Hero from "@/components/Hero";
@@ -10,9 +10,10 @@ import ContactModal from "@/components/ContactModal";
 import FunFactsModal from "@/components/FunFactsModal";
 import DeveloperModeModal from "@/components/DeveloperModeModal";
 import FloatingDock from "@/components/ui/floating-dock";
-import BackgroundCanvas from "@/components/ui/background-canvas";
 
-const Index = () => {
+const IndexNoThree = () => {
+  console.log('IndexNoThree component is rendering...');
+  
   const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const [isFunFactsModalOpen, setIsFunFactsModalOpen] = useState(false);
   const [isDeveloperModeOpen, setIsDeveloperModeOpen] = useState(false);
@@ -31,27 +32,28 @@ const Index = () => {
     });
   };
 
-  // Handle Konami code
+  // Konami code easter egg
   useEffect(() => {
-    const konamiSequence = [
-      'ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown',
-      'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight',
-      'KeyB', 'KeyA'
-    ];
-
     const handleKeyDown = (e: KeyboardEvent) => {
+      const konamiSequence = [
+        'ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown',
+        'ArrowLeft', 'ArrowRight', 'ArrowLeft', 'ArrowRight',
+        'KeyB', 'KeyA'
+      ];
+
       setKonamiCode(prev => {
-        const newSequence = [...prev, e.code];
-        if (newSequence.length > konamiSequence.length) {
-          newSequence.shift();
+        const newCode = [...prev, e.code];
+        if (newCode.length > konamiSequence.length) {
+          newCode.shift();
         }
         
-        if (newSequence.join(',') === konamiSequence.join(',')) {
+        if (newCode.length === konamiSequence.length && 
+            newCode.every((code, index) => code === konamiSequence[index])) {
           setIsDeveloperModeOpen(true);
           return [];
         }
         
-        return newSequence;
+        return newCode;
       });
     };
 
@@ -61,11 +63,15 @@ const Index = () => {
 
   return (
     <div className="min-h-screen gradient-primary">
-      {/* Three.js Background */}
-      <Suspense fallback={null}>
-        <BackgroundCanvas />
-      </Suspense>
-      
+      {/* Simple background without Three.js */}
+      <div className="fixed inset-0 -z-10">
+        <div className="absolute inset-0 bokeh-bg opacity-40" />
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-accent opacity-5 rounded-full blur-3xl animate-pulse" />
+          <div className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-gold opacity-5 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '2s' }} />
+        </div>
+      </div>
+
       {/* Main Content */}
       <AnimatePresence>
         <motion.div
@@ -73,44 +79,44 @@ const Index = () => {
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8 }}
         >
-          <Navigation />
-          
+          <Navigation onContactClick={() => setIsContactModalOpen(true)} />
+
           <main>
             <section id="home">
               <Hero onAvatarClick={handleAvatarClick} />
             </section>
-            
+
             <About />
-            
+
             <Projects />
-            
+
             <Skills />
           </main>
-          
+
           <Footer onContactClick={() => setIsContactModalOpen(true)} />
-          
+
           {/* Floating Dock */}
           <FloatingDock onContactClick={() => setIsContactModalOpen(true)} />
         </motion.div>
       </AnimatePresence>
-      
+
       {/* Modals */}
-      <ContactModal 
-        isOpen={isContactModalOpen} 
-        onClose={() => setIsContactModalOpen(false)} 
+      <ContactModal
+        isOpen={isContactModalOpen}
+        onClose={() => setIsContactModalOpen(false)}
       />
-      
-      <FunFactsModal 
-        isOpen={isFunFactsModalOpen} 
-        onClose={() => setIsFunFactsModalOpen(false)} 
+
+      <FunFactsModal
+        isOpen={isFunFactsModalOpen}
+        onClose={() => setIsFunFactsModalOpen(false)}
       />
-      
-      <DeveloperModeModal 
-        isOpen={isDeveloperModeOpen} 
-        onClose={() => setIsDeveloperModeOpen(false)} 
+
+      <DeveloperModeModal
+        isOpen={isDeveloperModeOpen}
+        onClose={() => setIsDeveloperModeOpen(false)}
       />
     </div>
   );
 };
 
-export default Index;
+export default IndexNoThree;

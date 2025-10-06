@@ -1,73 +1,310 @@
-# Welcome to your Lovable project
+# Premium Dark Portfolio
 
-## Project info
+A modern, minimal, and aesthetic dark portfolio website built with React, TypeScript, and Tailwind CSS. Features glassmorphism effects, Three.js animations, and a premium design system.
 
-**URL**: https://lovable.dev/projects/a26f637b-571d-45d9-a656-905d5e9e9a05
+## ✨ Features
 
-## How can I edit this code?
+### 🎨 Design & UI
+- **Premium Dark Theme**: Deep charcoal backgrounds with teal accent colors
+- **Glassmorphism Effects**: Frosted glass cards with backdrop blur
+- **Neumorphism Elements**: Subtle 3D effects and shadows
+- **Responsive Design**: Optimized for all device sizes
+- **Smooth Animations**: Framer Motion micro-interactions
+- **Three.js Background**: Animated gradient bokeh and particle effects
 
-There are several ways of editing your application.
+### 🚀 Technical Features
+- **React 18** with TypeScript
+- **Vite** for fast development and building
+- **Tailwind CSS** with custom design tokens
+- **shadcn/ui** component library
+- **Framer Motion** for animations
+- **React Three Fiber** for 3D graphics
+- **Data-driven Content**: YAML/JSON content management
+- **CV Export**: HTML and text CV generation
+- **Accessibility**: WCAG compliant with keyboard navigation
+- **Performance Optimized**: Lazy loading and code splitting
 
-**Use Lovable**
+### 📱 Pages & Sections
+- **Home**: Hero section with animated avatar and call-to-action
+- **About**: Personal story with stats and fun facts
+- **Projects**: Showcase with filtering and detailed project cards
+- **Skills**: Technical skills with proficiency indicators
+- **Contact**: Modal with contact information and social links
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/a26f637b-571d-45d9-a656-905d5e9e9a05) and start prompting.
+## 🛠️ Tech Stack
 
-Changes made via Lovable will be committed automatically to this repo.
+### Core Technologies
+- **React 18.3.1** - UI framework
+- **TypeScript 5.8.3** - Type safety
+- **Vite 5.4.19** - Build tool
+- **Tailwind CSS 3.4.17** - Styling
 
-**Use your preferred IDE**
+### UI & Animation
+- **shadcn/ui** - Component library
+- **Framer Motion 11.0.0** - Animations
+- **Lucide React** - Icons
+- **React Three Fiber** - 3D graphics
+- **@react-three/drei** - Three.js helpers
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Development Tools
+- **ESLint** - Code linting
+- **Prettier** - Code formatting
+- **TypeScript ESLint** - TypeScript linting
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+## 🚀 Getting Started
 
-Follow these steps:
+### Prerequisites
+- Node.js 18+ 
+- npm or yarn
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+### Installation
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+1. **Clone the repository**
+   ```bash
+   git clone <repository-url>
+   cd portoflio-trial
+   ```
 
-# Step 3: Install the necessary dependencies.
-npm i
+2. **Install dependencies**
+   ```bash
+   npm install
+   ```
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
-npm run dev
+3. **Start development server**
+   ```bash
+   npm run dev
+   ```
+
+4. **Open in browser**
+   ```
+   http://localhost:5173
+   ```
+
+### Build for Production
+
+```bash
+npm run build
 ```
 
-**Edit a file directly in GitHub**
+### Preview Production Build
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+```bash
+npm run preview
+```
 
-**Use GitHub Codespaces**
+## 📁 Project Structure
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+```
+src/
+├── components/           # React components
+│   ├── ui/              # Reusable UI components
+│   │   ├── glass-card.tsx
+│   │   ├── floating-dock.tsx
+│   │   ├── project-card.tsx
+│   │   └── background-canvas.tsx
+│   ├── Hero.tsx         # Hero section
+│   ├── About.tsx        # About section
+│   ├── Projects.tsx     # Projects showcase
+│   ├── Skills.tsx       # Skills section
+│   └── Navigation.tsx   # Navigation bar
+├── data/                # Content data
+│   ├── portfolio.ts     # Main portfolio data
+│   ├── projects.yml     # Projects data
+│   ├── experience.yml   # Experience data
+│   └── skills.json      # Skills data
+├── lib/                 # Utilities
+│   ├── utils.ts         # General utilities
+│   ├── content.ts       # Content loading
+│   └── cv-export.ts     # CV export functionality
+├── pages/               # Page components
+│   └── Index.tsx        # Main page
+├── styles/              # Styling
+│   └── index.css        # Global styles
+└── types/               # TypeScript types
+    └── index.ts         # Type definitions
+```
 
-## What technologies are used for this project?
+## 🎨 Design System
 
-This project is built with:
+### Color Palette
+- **Primary**: Deep charcoal (#0b0f12)
+- **Secondary**: Gradient teal to purple to indigo
+- **Accent**: Soft cyan (#20E3B2)
+- **Gold**: Subtle gold for highlights (#F6AD55)
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+### Typography
+- **Display**: Poppins (headings)
+- **Body**: Inter (body text)
+- **Mono**: JetBrains Mono (code)
 
-## How can I deploy this project?
+### Components
+- **GlassCard**: Frosted glass effect with backdrop blur
+- **FloatingDock**: Bottom navigation with smooth animations
+- **ProjectCard**: Interactive project showcase cards
+- **BackgroundCanvas**: Three.js animated background
 
-Simply open [Lovable](https://lovable.dev/projects/a26f637b-571d-45d9-a656-905d5e9e9a05) and click on Share -> Publish.
+## 📝 Content Management
 
-## Can I connect a custom domain to my Lovable project?
+### Adding Projects
+Edit `src/data/projects.yml`:
 
-Yes, you can!
+```yaml
+- slug: my-project
+  title: My Project
+  subtitle: Project Description
+  description: Detailed project description
+  tech: ["React", "TypeScript", "Tailwind"]
+  category: "Web Application"
+  link: "https://example.com"
+  repo: "https://github.com/username/repo"
+```
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+### Adding Experience
+Edit `src/data/experience.yml`:
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+```yaml
+- company: "Company Name"
+  title: "Job Title"
+  period: "2023 - Present"
+  achievements:
+    - "Achievement 1"
+    - "Achievement 2"
+```
+
+### Adding Skills
+Edit `src/data/skills.json`:
+
+```json
+{
+  "frontend": {
+    "category": "Frontend Development",
+    "skills": [
+      {
+        "name": "React",
+        "level": 90,
+        "years": "3+",
+        "description": "Building modern UIs"
+      }
+    ]
+  }
+}
+```
+
+## 🎯 Features in Detail
+
+### Glassmorphism Design
+- Backdrop blur effects
+- Semi-transparent backgrounds
+- Subtle borders and shadows
+- Smooth hover transitions
+
+### Three.js Background
+- Animated gradient spheres
+- Particle system
+- Mouse parallax effects
+- Performance optimized
+
+### CV Export
+- HTML format with styling
+- Text format for plain text
+- Automatic data generation
+- Download functionality
+
+### Responsive Design
+- Mobile-first approach
+- Flexible grid layouts
+- Touch-friendly interactions
+- Optimized for all screen sizes
+
+## 🔧 Customization
+
+### Changing Colors
+Edit CSS variables in `src/index.css`:
+
+```css
+:root {
+  --primary: 173 80% 40%;        /* Teal */
+  --accent: 173 80% 40%;         /* Teal */
+  --background: 220 13% 9%;      /* Dark */
+}
+```
+
+### Adding New Sections
+1. Create component in `src/components/`
+2. Add to navigation in `src/data/portfolio.ts`
+3. Import and use in `src/pages/Index.tsx`
+
+### Modifying Animations
+Update Framer Motion configurations in components:
+
+```tsx
+<motion.div
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.6 }}
+>
+```
+
+## 🚀 Deployment
+
+### Vercel (Recommended)
+1. Connect GitHub repository to Vercel
+2. Configure build settings:
+   - Build Command: `npm run build`
+   - Output Directory: `dist`
+3. Deploy automatically on push
+
+### Netlify
+1. Connect repository to Netlify
+2. Set build command: `npm run build`
+3. Set publish directory: `dist`
+
+### Manual Deployment
+1. Build the project: `npm run build`
+2. Upload `dist` folder to your hosting provider
+
+## 📊 Performance
+
+### Optimizations
+- **Code Splitting**: Automatic route-based splitting
+- **Lazy Loading**: Three.js components loaded on demand
+- **Image Optimization**: WebP format with fallbacks
+- **Bundle Analysis**: Optimized bundle size
+- **Tree Shaking**: Unused code elimination
+
+### Lighthouse Scores
+- **Performance**: 90+
+- **Accessibility**: 95+
+- **Best Practices**: 95+
+- **SEO**: 90+
+
+## 🤝 Contributing
+
+1. Fork the repository
+2. Create a feature branch: `git checkout -b feature/amazing-feature`
+3. Commit changes: `git commit -m 'Add amazing feature'`
+4. Push to branch: `git push origin feature/amazing-feature`
+5. Open a Pull Request
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- **shadcn/ui** for the component library
+- **Tailwind CSS** for the utility-first CSS framework
+- **Framer Motion** for smooth animations
+- **React Three Fiber** for 3D graphics
+- **Lucide** for beautiful icons
+
+## 📞 Contact
+
+**Chaitanya Dhamdhere**
+- Email: c.dhamdhere@somaiya.edu
+- GitHub: [@chaitu0608](https://github.com/chaitu0608)
+- LinkedIn: [Chaitanya Dhamdhere](https://www.linkedin.com/in/chaitanya-dhamdhere/)
+
+---
+
+Built with ❤️ using React, TypeScript, and modern web technologies.

@@ -30,10 +30,9 @@ export const contactInfo: ContactInfo = {
 export const navItems: NavItem[] = [
   { label: "Home", href: "#home" },
   { label: "About", href: "#about" },
-  { label: "Experience", href: "#experience" },
-  { label: "Education", href: "#education" },
   { label: "Projects", href: "#projects" },
   { label: "Skills", href: "#skills" },
+  { label: "Contact", href: "#contact" },
 ];
 
 // Experience Data

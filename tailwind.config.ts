@@ -18,11 +18,29 @@ export default {
 			}
 		},
 		extend: {
+			fontFamily: {
+				'sans': ['Inter', 'system-ui', 'sans-serif'],
+				'display': ['Poppins', 'system-ui', 'sans-serif'],
+				'mono': ['JetBrains Mono', 'monospace'],
+			},
 			backgroundImage: {
 				'gradient-primary': 'var(--gradient-primary)',
 				'gradient-secondary': 'var(--gradient-secondary)',
 				'gradient-accent': 'var(--gradient-accent)',
+				'gradient-gold': 'var(--gradient-gold)',
 				'text-gradient': 'var(--text-gradient)',
+				'bokeh': 'var(--bokeh-bg)',
+			},
+			boxShadow: {
+				'glow': 'var(--shadow-glow)',
+				'glow-strong': 'var(--shadow-glow-strong)',
+				'glow-gold': 'var(--shadow-gold)',
+				'card': 'var(--shadow-card)',
+				'card-hover': 'var(--shadow-card-hover)',
+				'neumorphism': 'var(--neumorphism-light), var(--neumorphism-dark)',
+			},
+			backdropBlur: {
+				'xs': '2px',
 			},
 			colors: {
 				border: 'hsl(var(--border))',
@@ -98,5 +116,5 @@ export default {
 			}
 		}
 	},
-	plugins: [require("tailwindcss-animate")],
+	plugins: [require("tailwindcss-animate")]
 } satisfies Config;
