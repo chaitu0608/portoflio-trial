@@ -1,50 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Code, Database, Smartphone, Globe } from "lucide-react";
-import GlassCard from "@/components/ui/glass-card";
-import ProjectCard from "@/components/ui/project-card";
-import { loadProjects, getFeaturedProjects, Project } from "@/lib/content";
+import { ArrowRight, ExternalLink, Github } from "lucide-react";
+import { projects } from "@/data/portfolio";
 
 const Projects = () => {
-  const [projects, setProjects] = useState<Project[]>([]);
-  const [featuredProjects, setFeaturedProjects] = useState<Project[]>([]);
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
 
-  useEffect(() => {
-    const fetchProjects = async () => {
-      const allProjects = await loadProjects();
-      const featured = await getFeaturedProjects(3);
-      setProjects(allProjects);
-      setFeaturedProjects(featured);
-    };
-
-    fetchProjects();
-  }, []);
-
   const categories = ['All', 'Web3', 'Web Application', 'Mobile Application', 'Full Stack Application', 'Desktop Application'];
-  
-  const filteredProjects = selectedCategory === 'All' 
-    ? projects 
+
+  const filteredProjects = selectedCategory === 'All'
+    ? projects
     : projects.filter(project => project.category === selectedCategory);
 
-  const getCategoryIcon = (category: string) => {
-    switch (category) {
-      case 'Web3':
-        return <Globe className="w-4 h-4" />;
-      case 'Web Application':
-        return <Code className="w-4 h-4" />;
-      case 'Mobile Application':
-        return <Smartphone className="w-4 h-4" />;
-      case 'Full Stack Application':
-        return <Database className="w-4 h-4" />;
-      default:
-        return <Code className="w-4 h-4" />;
-    }
-  };
-
   return (
-    <section id="projects" className="py-20 px-4">
+    <section id="projects" className="py-20 px-4 bg-gradient-to-br from-purple-900/20 via-background to-purple-800/20">
       <div className="max-w-7xl mx-auto">
         {/* Header */}
         <motion.div
@@ -54,42 +24,19 @@ const Projects = () => {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="text-4xl md:text-5xl font-display font-bold mb-4">
-            Featured <span className="text-gradient">Projects</span>
+          <h2 className="text-4xl md:text-5xl font-display font-bold mb-4 text-white">
+            The things I have <span className="text-gradient">built</span>
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
             A showcase of my recent work, featuring innovative solutions and modern technologies
           </p>
         </motion.div>
 
-        {/* Project Stats */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          viewport={{ once: true }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-16"
-        >
-          {[
-            { label: 'Projects', value: projects.length },
-            { label: 'Technologies', value: '15+' },
-            { label: 'Success Rate', value: '100%' },
-            { label: 'Client Satisfaction', value: '5.0' }
-          ].map((stat, index) => (
-            <GlassCard key={index} className="p-6 text-center">
-              <div className="text-2xl md:text-3xl font-display font-bold text-accent mb-1">
-                {stat.value}
-              </div>
-              <div className="text-sm text-muted-foreground">{stat.label}</div>
-            </GlassCard>
-          ))}
-        </motion.div>
-
         {/* Category Filter */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
           viewport={{ once: true }}
           className="flex flex-wrap justify-center gap-2 mb-12"
         >
@@ -100,90 +47,120 @@ const Projects = () => {
               size="sm"
               onClick={() => setSelectedCategory(category)}
               className={`smooth-transition ${
-                selectedCategory === category 
-                  ? "btn-primary" 
-                  : "btn-secondary"
+                selectedCategory === category
+                  ? "bg-accent text-background hover:bg-accent/90"
+                  : "border-purple-400/30 text-purple-300 hover:bg-purple-400/10"
               }`}
             >
-              {getCategoryIcon(category)}
-              <span className="ml-2">{category}</span>
+              <span>{category}</span>
             </Button>
           ))}
         </motion.div>
 
-        {/* Featured Projects */}
-        {selectedCategory === 'All' && (
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.4 }}
-            viewport={{ once: true }}
-            className="mb-16"
-          >
-            <h3 className="text-2xl font-display font-semibold mb-8 text-center">
-              Featured Work
-            </h3>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {featuredProjects.map((project, index) => (
-                <motion.div
-                  key={project.slug}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  viewport={{ once: true }}
-                >
-                  <ProjectCard project={project} />
-                </motion.div>
-              ))}
-            </div>
-          </motion.div>
-        )}
-
-        {/* All Projects */}
+        {/* Projects Grid */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.5 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
           viewport={{ once: true }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8"
         >
-          <h3 className="text-2xl font-display font-semibold mb-8 text-center">
-            {selectedCategory === 'All' ? 'All Projects' : `${selectedCategory} Projects`}
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {filteredProjects.map((project, index) => (
-              <motion.div
-                key={project.slug}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-              >
-                <ProjectCard project={project} />
-              </motion.div>
-            ))}
-          </div>
+          {filteredProjects.map((project, index) => (
+            <motion.div
+              key={project.title}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: index * 0.1 }}
+              viewport={{ once: true }}
+              className="group"
+            >
+              <div className="bg-gradient-to-br from-purple-800/30 to-purple-900/50 backdrop-blur-sm border border-purple-400/20 rounded-2xl p-6 h-full hover:border-purple-400/40 transition-all duration-300 hover:shadow-2xl hover:shadow-purple-500/10">
+                {/* Project Image */}
+                <div className="relative mb-6 overflow-hidden rounded-xl">
+                  <div className="aspect-video bg-gradient-to-br from-purple-600/20 to-purple-800/30 rounded-xl flex items-center justify-center">
+                    <div className="text-6xl opacity-50">💻</div>
+                  </div>
+                </div>
+
+                {/* Project Info */}
+                <div className="space-y-4">
+                  <div>
+                    <h3 className="text-xl font-display font-bold text-white mb-2">
+                      {project.title}
+                    </h3>
+                    <p className="text-muted-foreground text-sm leading-relaxed">
+                      {project.description}
+                    </p>
+                  </div>
+
+                  {/* Tech Stack */}
+                  <div className="flex flex-wrap gap-2">
+                    {project.tech.slice(0, 3).map((tech, techIndex) => (
+                      <span
+                        key={techIndex}
+                        className="px-3 py-1 bg-purple-700/30 text-purple-200 text-xs rounded-full border border-purple-500/30"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                    {project.tech.length > 3 && (
+                      <span className="px-3 py-1 bg-purple-700/30 text-purple-200 text-xs rounded-full border border-purple-500/30">
+                        +{project.tech.length - 3}
+                      </span>
+                    )}
+                  </div>
+
+                  {/* Action Buttons */}
+                  <div className="flex gap-2 pt-2">
+                    {project.githubUrl && (
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="flex-1 border-purple-400/30 text-purple-300 hover:bg-purple-400/10"
+                        onClick={() => window.open(project.githubUrl, '_blank')}
+                      >
+                        <Github className="w-4 h-4 mr-2" />
+                        Code
+                      </Button>
+                    )}
+                    {project.liveUrl && (
+                      <Button
+                        variant="outline"
+                        size="sm"
+                        className="flex-1 border-purple-400/30 text-purple-300 hover:bg-purple-400/10"
+                        onClick={() => window.open(project.liveUrl, '_blank')}
+                      >
+                        <ExternalLink className="w-4 h-4 mr-2" />
+                        Live
+                      </Button>
+                    )}
+                  </div>
+                </div>
+              </div>
+            </motion.div>
+          ))}
         </motion.div>
 
         {/* Call to Action */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.6 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
           viewport={{ once: true }}
           className="text-center mt-16"
         >
-          <GlassCard className="p-8 max-w-2xl mx-auto">
-            <h3 className="text-2xl font-display font-semibold mb-4">
+          <div className="bg-gradient-to-br from-purple-800/30 to-purple-900/50 backdrop-blur-sm border border-purple-400/20 rounded-2xl p-8 max-w-2xl mx-auto">
+            <h3 className="text-2xl font-display font-semibold mb-4 text-white">
               Interested in working together?
             </h3>
             <p className="text-muted-foreground mb-6">
               I'm always excited to take on new challenges and create amazing digital experiences.
             </p>
-            <Button className="btn-primary">
+            <Button className="bg-accent hover:bg-accent/90 text-background">
               Let's discuss your project
               <ArrowRight className="w-4 h-4 ml-2" />
             </Button>
-          </GlassCard>
+          </div>
         </motion.div>
       </div>
     </section>

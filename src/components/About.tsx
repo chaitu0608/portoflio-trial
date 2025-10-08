@@ -5,25 +5,16 @@ import GlassCard from "@/components/ui/glass-card";
 import { personalInfo } from "@/data/portfolio";
 
 const About = () => {
-  const stats = [
-    { label: "Projects Built", value: "5+", icon: Rocket },
+  const highlights = [
+    { label: "Projects", value: "5+", icon: Rocket },
     { label: "Technologies", value: "20+", icon: Zap },
     { label: "Hackathons", value: "3", icon: Target },
-    { label: "Students Mentored", value: "50+", icon: User }
+    { label: "Mentored", value: "50+", icon: User }
   ];
 
   const interests = [
-    "Full-Stack Development", "Competitive Programming", "Web3 Technologies", 
-    "Machine Learning", "Open Source", "Tech Mentoring", "UI/UX Design", "DevOps"
-  ];
-
-  const funFacts = [
-    "Fixed an infinite loop at 3 AM",
-    "Believes console.log() is therapy",
-    "Can debug CSS in dreams",
-    "Once deployed to production on first try",
-    "Coffee-powered coding sessions",
-    "Always learning something new"
+    "Full-Stack Development", "Web3 Technologies", "Machine Learning", 
+    "Open Source", "UI/UX Design", "DevOps"
   ];
 
   return (
@@ -68,29 +59,29 @@ const About = () => {
               </p>
             </div>
 
-            {/* Stats */}
-            <div className="grid grid-cols-2 gap-4">
-              {stats.map((stat, index) => {
-                const Icon = stat.icon;
-                return (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
-                    viewport={{ once: true }}
-                  >
-                    <GlassCard className="p-4 text-center">
-                      <Icon className="w-6 h-6 text-accent mx-auto mb-2" />
-                      <div className="text-2xl font-display font-bold text-accent mb-1">
-                        {stat.value}
-                      </div>
-                      <div className="text-sm text-muted-foreground">{stat.label}</div>
-                    </GlassCard>
-                  </motion.div>
-                );
-              })}
-            </div>
+                  {/* Highlights */}
+                  <div className="grid grid-cols-2 gap-4">
+                    {highlights.map((highlight, index) => {
+                      const Icon = highlight.icon;
+                      return (
+                        <motion.div
+                          key={index}
+                          initial={{ opacity: 0, y: 20 }}
+                          whileInView={{ opacity: 1, y: 0 }}
+                          transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
+                          viewport={{ once: true }}
+                        >
+                          <GlassCard className="p-4 text-center">
+                            <Icon className="w-6 h-6 text-accent mx-auto mb-2" />
+                            <div className="text-2xl font-display font-bold text-accent mb-1">
+                              {highlight.value}
+                            </div>
+                            <div className="text-sm text-muted-foreground">{highlight.label}</div>
+                          </GlassCard>
+                        </motion.div>
+                      );
+                    })}
+                  </div>
 
             {/* Interests */}
             <div className="space-y-4">
@@ -112,41 +103,17 @@ const About = () => {
             </div>
           </motion.div>
 
-          {/* Right Content - Image & Fun Facts */}
+          {/* Right Content - Profile Image */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
             viewport={{ once: true }}
-            className="space-y-8"
+            className="flex justify-center lg:justify-end"
           >
-            {/* Profile Image */}
             <GlassCard className="p-8 premium-glow">
               <div className="w-full h-80 bg-gradient-accent rounded-2xl flex items-center justify-center">
                 <div className="text-8xl">👨‍💻</div>
-              </div>
-            </GlassCard>
-
-            {/* Fun Facts */}
-            <GlassCard className="p-6">
-              <div className="flex items-center gap-3 mb-4">
-                <Heart className="w-5 h-5 text-accent" />
-                <h4 className="text-lg font-display font-semibold">Fun Facts</h4>
-              </div>
-              <div className="space-y-3">
-                {funFacts.map((fact, index) => (
-                  <motion.div
-                    key={index}
-                    initial={{ opacity: 0, x: -10 }}
-                    whileInView={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.5, delay: 0.5 + index * 0.1 }}
-                    viewport={{ once: true }}
-                    className="flex items-center gap-3 text-sm text-muted-foreground"
-                  >
-                    <div className="w-2 h-2 bg-accent rounded-full flex-shrink-0"></div>
-                    {fact}
-                  </motion.div>
-                ))}
               </div>
             </GlassCard>
           </motion.div>

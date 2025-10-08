@@ -2,7 +2,13 @@ import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Menu, X, Home, User, Briefcase, Code, Star, Mail } from "lucide-react";
 import { navItems, personalInfo } from "@/data/portfolio";
-import { scrollToSection } from "@/utils/animations";
+// Simple scroll function
+const scrollToSection = (href: string) => {
+  const element = document.querySelector(href);
+  if (element) {
+    element.scrollIntoView({ behavior: 'smooth' });
+  }
+};
 import { motion, AnimatePresence } from "framer-motion";
 
 interface NavigationProps {
@@ -68,10 +74,10 @@ const Navigation: React.FC<NavigationProps> = ({ onContactClick }) => {
       }`}
     >
       <div className="max-w-6xl mx-auto px-6">
-        <div className="flex items-center justify-between h-16">
-          {/* Logo */}
+        <div className="flex items-center justify-center h-16 relative">
+          {/* Logo - Positioned absolutely on the left */}
           <motion.div 
-            className="flex items-center gap-3"
+            className="absolute left-0 flex items-center gap-3"
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
           >
@@ -83,7 +89,7 @@ const Navigation: React.FC<NavigationProps> = ({ onContactClick }) => {
             </div>
           </motion.div>
           
-          {/* Desktop Navigation */}
+          {/* Desktop Navigation - Centered */}
           <div className="hidden md:flex items-center gap-1">
             {navItems.map((item) => {
               const Icon = navIcons[item.href.substring(1) as keyof typeof navIcons];
@@ -106,8 +112,8 @@ const Navigation: React.FC<NavigationProps> = ({ onContactClick }) => {
             })}
           </div>
           
-          {/* Status & Contact */}
-          <div className="hidden lg:flex items-center gap-4">
+          {/* Status & Contact - Positioned absolutely on the right */}
+          <div className="absolute right-0 hidden lg:flex items-center gap-4">
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 bg-accent rounded-full animate-pulse"></div>
               <span className="text-accent font-mono text-xs">AVAILABLE</span>
@@ -123,11 +129,11 @@ const Navigation: React.FC<NavigationProps> = ({ onContactClick }) => {
             </Button>
           </div>
           
-          {/* Mobile Menu Button */}
+          {/* Mobile Menu Button - Positioned absolutely on the right */}
           <Button
             variant="ghost"
             size="sm"
-            className="md:hidden border border-accent/30 text-accent hover:bg-accent/10"
+            className="absolute right-0 md:hidden border border-accent/30 text-accent hover:bg-accent/10"
             onClick={() => setIsOpen(!isOpen)}
           >
             {isOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}

@@ -3,7 +3,14 @@ import { Download, Github, Linkedin, Mail, Phone, MapPin, ArrowDown } from "luci
 import { personalInfo, contactInfo } from "@/data/portfolio";
 import { motion } from "framer-motion";
 import GlassCard from "@/components/ui/glass-card";
-import { exportToPDF } from "@/lib/cv-export";
+// Simple PDF export function
+const exportToPDF = async () => {
+  // For now, just open the resume URL if available
+  const resumeUrl = "/resume.pdf"; // You can update this path
+  if (resumeUrl) {
+    window.open(resumeUrl, '_blank');
+  }
+};
 
 interface HeroProps {
   onAvatarClick: () => void;
@@ -28,26 +35,23 @@ const Hero: React.FC<HeroProps> = ({ onAvatarClick }) => {
 
   return (
     <section className="min-h-screen flex items-center px-4 py-20 relative">
-      {/* Bokeh Background */}
-      <div className="absolute inset-0 bokeh-bg opacity-40"></div>
-      
-      {/* Animated Background Elements */}
+      {/* Subtle Background Elements */}
       <div className="absolute inset-0 overflow-hidden">
         <motion.div 
-          className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-accent opacity-5 rounded-full blur-3xl"
+          className="absolute top-1/4 left-1/4 w-96 h-96 bg-gradient-accent opacity-3 rounded-full blur-3xl"
           animate={{ 
-            scale: [1, 1.2, 1],
-            opacity: [0.05, 0.1, 0.05]
+            scale: [1, 1.1, 1],
+            opacity: [0.03, 0.06, 0.03]
           }}
-          transition={{ duration: 8, repeat: Infinity }}
+          transition={{ duration: 12, repeat: Infinity }}
         />
         <motion.div 
-          className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-gold opacity-5 rounded-full blur-3xl"
+          className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-gradient-gold opacity-3 rounded-full blur-3xl"
           animate={{ 
-            scale: [1.2, 1, 1.2],
-            opacity: [0.1, 0.05, 0.1]
+            scale: [1.1, 1, 1.1],
+            opacity: [0.06, 0.03, 0.06]
           }}
-          transition={{ duration: 10, repeat: Infinity, delay: 2 }}
+          transition={{ duration: 15, repeat: Infinity, delay: 3 }}
         />
       </div>
 
